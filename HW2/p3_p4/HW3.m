@@ -2,7 +2,7 @@ clc;
 clear;
 [coor, conn, ndime, mate, nnode, nelem, nelnd, npres, pres, nload, load, ntrac, trac] = ReadInput('hw2_3_inputfile.h5');
 
-[uglob, Stress_glob] = uglob_find(ndime,nnode,nelem,nelnd,mate,coor,conn,ntrac,trac,npres,pres);
+[uglob, Stress_glob] = stress_find(ndime,nnode,nelem,nelnd,mate,coor,conn,ntrac,trac,npres,pres);
 
 Stress_val = zeros(1,nelem);
 for i = 1:nelem

@@ -1,4 +1,4 @@
-function [uglob, Stress_glob] = uglob_find(ndime,nnode,nelem,nelnd,mate,coor,conn,ntrac,trac,npres,pres)
+function [uglob, Stress_glob] = stress_find(ndime,nnode,nelem,nelnd,mate,coor,conn,ntrac,trac,npres,pres)
     [kglob, Bglob, Dglob] = GlobStif(ndime,nnode,nelem,nelnd,mate,coor,conn);
     rglob = GlobTrac(ndime,nnode,nelem,nelnd,ntrac,mate,coor,conn,trac);
     kpres= kglob;
@@ -24,7 +24,7 @@ function [uglob, Stress_glob] = uglob_find(ndime,nnode,nelem,nelnd,mate,coor,con
         uel(1:2,1) = [uglob(2*conn(1,j)-1, 1),uglob(2*conn(1,j), 1)];
         uel(3:4,1) = [uglob(2*conn(2,j)-1, 1),uglob(2*conn(2,j), 1)];
         uel(5:6,1) = [uglob(2*conn(3,j)-1, 1),uglob(2*conn(3,j), 1)];
-        Strain_glob = Bel * uel;
-        Stress_glob{j} = Del * Strain_glob;
+        strain = Bel * uel;
+        Stress_glob{j} = Del * strain;
     end
 end
