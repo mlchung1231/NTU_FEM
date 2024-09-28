@@ -1,9 +1,8 @@
 clc;
 clear;
-fd = @hw01_04d;
+fd = @fshaped;
 fh = @uniform_mesh;
-%[p, t] = distmesh_2d(fd, fh, h, meshbox, iteration_max, fixed);
-[p,t] = distmesh( fd, fh, 1, [-90,-45;90,45], [-1,-1;-1,1;1,-1;1,1] );
+[p,t] = distmesh( fd, fh, 2, [-90,-45;90,45], [-1,-1;-1,1;1,-1;1,1] );
 patch( 'vertices', p, 'faces', t, 'facecolor', [.9, .9, .9] )
 axis equal;
 xlabel('X-axis');
@@ -129,7 +128,7 @@ h5create(filename, '/trac', size(trac));
 h5write(filename, '/trac', trac);
 
 
-function d = hw01_04d(p)
+function d = fshaped(p)
 
     rect1 = drectangle(p , -90, 90, -45, 45);
     rect2 = drectangle(p , 0, 91, 30, 46);
@@ -143,11 +142,7 @@ function d = hw01_04d(p)
     d = ddiff(d, cir1);
     d = ddiff(d, cir2);
 end
-function h = fd_improve(p)
 
-    h = min(1*sqrt(sum(p.^2, 2))-5, 10);
-
-end
 function h = uniform_mesh(p)
     np = size(p, 1);
     h = ones(np, 1);
