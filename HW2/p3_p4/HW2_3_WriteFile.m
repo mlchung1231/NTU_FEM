@@ -2,8 +2,9 @@ clc;
 clear;
 drectangle = @(p,x1,x2,y1,y2) -min(min(min(-y1+p(:,2),y2-p(:,2)),-x1+p(:,1)),x2-p(:,1));
 fd = @(p) max( drectangle(p,-45,45,-45,45), -(sqrt(sum(p.^2,2))-9) );
-fh = @(p) 0.8 + 0.1*(sqrt(sum(p.^2,2))-9);
-[p,t] = distmesh( fd, fh, 1, [-45,-45;45,45], [-1,-1;-1,1;1,-1;1,1] );
+fh1 = @(p) 0.8 + 0.1*(sqrt(sum(p.^2,2))-9);
+fh2 = @(p) ones(size(p,1),1);
+[p,t] = distmesh( fd, fh2, 1, [-45,-45;45,45], [-1,-1;-1,1;1,-1;1,1] );
 patch( 'vertices', p, 'faces', t, 'facecolor', [.9, .9, .9] )
 axis equal;
 xlabel('X-axis');
@@ -127,13 +128,4 @@ h5write(filename, '/ntrac', ntrac);
 
 h5create(filename, '/trac', size(trac));
 h5write(filename, '/trac', trac);
-
-% [uglob, Stress_glob] = uglob_find(ndime,nnode,nelem,nelnd,mate,coor,conn,ntrac,trac,npres,pres);
-% 
-% Stress_val = zeros(1,nelem);
-% for i = 1:nelem
-%     Stress_val(i) = sqrt(sum(Stress_glob{i}(:).^2));  
-% end
-% max_stress = max(Stress_val);
-% max_stress = max_stress/5;
 
