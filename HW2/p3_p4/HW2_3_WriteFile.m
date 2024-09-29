@@ -4,12 +4,12 @@ drectangle = @(p,x1,x2,y1,y2) -min(min(min(-y1+p(:,2),y2-p(:,2)),-x1+p(:,1)),x2-
 fd = @(p) max( drectangle(p,-45,45,-45,45), -(sqrt(sum(p.^2,2))-9) );
 fh1 = @(p) 0.8 + 0.1*(sqrt(sum(p.^2,2))-9);
 fh2 = @(p) ones(size(p,1),1);
-[p,t] = distmesh( fd, fh1, 1, [-45,-45;45,45], [-1,-1;-1,1;1,-1;1,1] );
+[p,t] = distmesh( fd, fh2, 1, [-45,-45;45,45], [-1,-1;-1,1;1,-1;1,1] );
 patch( 'vertices', p, 'faces', t, 'facecolor', [.9, .9, .9] )
 axis equal;
 xlabel('X-axis');
 ylabel('Y-axis');
-title('Rectangle with a Circular Hole');
+title('HW2 (3) mesh');
 
 
 b_plane_strain = 1;
@@ -82,7 +82,6 @@ trac = zeros(ntrac,2+ndime);
 
 for i = 1:ntrac
     trac(i,:) = [trac_elem(i), trac_face(i), trac_h(i), trac_v(i)];
-
 end
 
 filename = 'hw2_3_inputfile.h5';
