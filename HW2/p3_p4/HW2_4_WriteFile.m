@@ -5,7 +5,7 @@ fh = @uniform_mesh;
 [p,t] = distmesh( fd, fh, 2, [-90,-45;90,45], [-1,-1;-1,1;1,-1;1,1] );
 patch( 'vertices', p, 'faces', t, 'facecolor', [.9, .9, .9] )
 axis equal;
-xlabel('X-axis');p0
+xlabel('X-axis');
 ylabel('Y-axis');
 title('HW2 (4) mesh');
 
