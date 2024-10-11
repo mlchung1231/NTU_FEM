@@ -1,7 +1,7 @@
 clc;
 clear;
 
-addpath('../distmesh/')
+addpath('./distmesh/')
 
 filename = 'hw3_3';
 fd = @hw3_3_fd;

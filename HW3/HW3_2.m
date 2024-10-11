@@ -1,8 +1,8 @@
 clc;
 clear;
 
-addpath('../FEM_function/')
-[coor, conn, ndime, mate, nnode, nelem, nelnd, npres, pres, nload, load, ntrac, trac] = ReadInput('hw3_1_inputfile.h5');
+addpath('./FEM_function/')
+[coor, conn, ndime, mate, nnode, nelem, nelnd, npres, pres, nload, load, ntrac, trac] = ReadInput('hw3_2_inputfile.h5');
 
 [uglob, Stress_glob] = stress_find(ndime,nnode,nelem,nelnd,mate,coor,conn,ntrac,trac,npres,pres);
 

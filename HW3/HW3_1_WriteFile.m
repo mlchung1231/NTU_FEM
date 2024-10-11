@@ -1,6 +1,6 @@
 clc;
 clear;
-addpath('../distmesh/')
+addpath('./distmesh/')
 drectangle = @(p,x1,x2,y1,y2) -min(min(min(-y1+p(:,2),y2-p(:,2)),-x1+p(:,1)),x2-p(:,1));
 fd = @(p) max( drectangle(p,-45,45,-45,45), -(sqrt(sum(p.^2,2))-9) );
 fh1 = @(p) 0.8 + 0.1*(sqrt(sum(p.^2,2))-9);

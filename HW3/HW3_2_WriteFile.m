@@ -1,7 +1,7 @@
 clc;
 clear;
 
-addpath('../distmesh/')
+addpath('./distmesh/')
 fd = @fshaped;
 fh = @uniform_mesh;
 [p,t] = distmesh_2d( fd, fh, 2, [-90,-45;90,45], 500, [-90,-45;-90,45;0,-45;0,45;90,-30;90,30] );
