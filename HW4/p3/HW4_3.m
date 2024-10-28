@@ -10,5 +10,8 @@ stress_val = zeros(1,nelem);
 for i = 1:nelem
     stress_val(i) = sqrt(sum(stress_glob{i}(:).^2));  
 end
+
 [max_stress, max_index] = max(stress_val);
+fprintf('Max stress is %.0f Pa.\n',max_stress);
+
 plot_stress(coor, conn, stress_val, max_index);

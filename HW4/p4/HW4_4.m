@@ -54,4 +54,4 @@ deflection = zeros(size(coor, 2), 1);
 for i = 1:size(coor, 2)
     deflection(i,1) = abs(uglob(3*i, 1));
 end
-fprintf("%f\n",max(deflection))
+fprintf("Max vertical deflection is %f mm.\n",max(deflection)*1e3);

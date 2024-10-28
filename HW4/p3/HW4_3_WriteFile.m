@@ -7,14 +7,14 @@ fd2 = @hw4_3_2_fd;
 fh2 = @hw4_3_2_fh;
 pfix1 =[-1,-1;-1,1;1,-1;1,1;1,-0.5;1,0.5;4,0.5;4,-0.5;-0.5,0;0,-0.5;0,0.5;0.5,0];
 pfix2 =[-1,-1;-1,1;1,-1;1,1;1,-0.5;1,0.5;4,0.5;4,-0.5;-0.5,-0.5;-0.5,0.5;0.5,-0.5;0.5,0.5];
-[p,t] = distmesh_2d( fd1, fh1, 0.05, [-1 -1; 4 1], 500 , pfix1 );
+[p,t] = distmesh_2d( fd2, fh2, 0.05, [-1 -1; 4 1], 500 , pfix2 );
 patch( 'vertices', p, 'faces', t, 'facecolor', [.9, .9, .9] )
 axis equal;
 xlabel('X-axis');
 ylabel('Y-axis');
 title('HW4 (3) Mesh');
 
-figure('color','w'); dist_plot(p,t,fd1); axis equal on; box on; xlabel('X-axis'); ylabel('Y-axis');
+figure('color','w'); dist_plot(p,t,fd2); axis equal on; box on; xlabel('X-axis'); ylabel('Y-axis');
 colorbar; colormap jet; title('HW4 (3) Signed distance function');
 figure('color','w'); dist_plot(p,t,fh1); axis equal on; box on; xlabel('X-axis'); ylabel('Y-axis');
 colorbar; colormap jet; title('HW4 (3) Mesh density function');
@@ -59,8 +59,8 @@ for i = 1:size(t, 1)
         else
             trac_face = [trac_face; 2];
         end
-        trac_h = [trac_h; 0];
-        trac_v = [trac_v; 1000/1];
+        trac_h = [trac_h; 1000/1];
+        trac_v = [trac_v; 0];
     end
 end
 
@@ -141,7 +141,7 @@ end
 
 function h = hw4_3_1_fh(p)
    h1 = 0.225+0.4*sqrt((p(:,1)-1).^2+(p(:,2)-0.5).^2);
-   h2 = 0.15+0.4*sqrt(sum(p.^2,2));
+   h2 = 0.05+0.4*sqrt(sum(p.^2,2));
    h3 = 0.225+0.4*sqrt((p(:,1)-1).^2+(p(:,2)+0.5).^2);
    h = min(min(min(h1,h3),h2),0.5);
 end

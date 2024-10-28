@@ -4,7 +4,7 @@ addpath('../distmesh/')
 drectangle = @(p,x1,x2,y1,y2) -min(min(min(-y1+p(:,2),y2-p(:,2)),-x1+p(:,1)),x2-p(:,1));
 fd = @(p) drectangle(p,0,100,0,30);
 fh = @(p) ones(size(p,1),1);
-[p,t] = distmesh_2d( fd, fh, 5, [0,0;100,20], 500 , [0,0;0,30;100,0;100,30] );
+[p,t] = distmesh_2d( fd, fh, 2, [0,0;100,30], 500 , [0,0;0,30;100,0;100,30] );
 patch( 'vertices', p, 'faces', t, 'facecolor', [.9, .9, .9] )
 axis equal;
 xlabel('X-axis');

@@ -3,7 +3,8 @@ clear;
 addpath('../distmesh/')
 fd = @hw4_2_fd;
 fh = @hw4_2_fh;
-[p,t] = distmesh_2d( fd, fh, 20, [-200 -200; 200 200], 500 , [-200,0;0,-200;0,200;200,0;-100,0;0,-100;0,100;100,0] );
+[p,t] = distmesh_2d( fd, fh, 20, [-200 -200; 200 200], 500 , ...
+    [-200,0;0,-200;0,200;200,0;-100,0;0,-100;0,100;100,0] );
 patch( 'vertices', p, 'faces', t, 'facecolor', [.9, .9, .9] )
 axis equal;
 xlabel('X-axis');
@@ -41,15 +42,18 @@ load_hv = zeros(3, size(coor,2));
 node_out = floor((size(coor, 2) * 2) / 3);
 node_in = floor(size(coor, 2) / 3);
 
+load_b = (1e9 * 0.2 * pi) / 4;
+load_a = (700e6 * 0.1 * pi) / 4;
+
 nload = 8;
-load = [1, -1e9, 0; 
-        5, 700e6, 0;
-        2, 0, -1e9;
-        6, 0, 700e6;
-        3, 0, 1e9;
-        7, 0 -700e6;
-        4, 1e9, 0;
-        8, -700e6, 0];
+load = [1, -load_b, 0; 
+        5, load_a, 0;
+        2, 0, -load_b;
+        6, 0, load_a;
+        3, 0, load_b;
+        7, 0 -load_a;
+        4, load_b, 0;
+        8, -load_a, 0];
 % for i = 1:size(coor, 2)
 %     distance = sqrt(coor(1, i)^2 + coor(2, i)^2);
 %     load_hv(1,i) = i;
