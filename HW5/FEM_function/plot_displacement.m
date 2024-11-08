@@ -77,7 +77,7 @@ function plot_displacement(coor, conn, deplacement)
     colormap(gradient_colors);
     
     split_points = linspace(min(deplacement), max(deplacement), 6);
-    Stress_label = num2str(split_points', '%5.3f');
+    Stress_label = num2str(split_points', '%.2f');
 
     C = colorbar('Ticks', linspace(0, 1, 6), 'TickLabels', strtrim(cellstr(Stress_label)));
     C.Label.String = 'mm';
