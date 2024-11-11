@@ -17,11 +17,14 @@ for i = 1:size(coor, 2)
     deflection_sl_v(i,1) = abs(uglob_sl(2*i, 1));
 end
 
-fprintf('Max deflection without shear locking %.3f mm.\n', max(deflection_v)*1e3);
-fprintf('Max deflection with shear locking %.3f mm.\n', max(deflection_sl_v)*1e3);
+fprintf('Max deflection without shear locking %.3f mm.\n', -max(deflection_v)*1e3);
+fprintf('Max deflection with shear locking %.3f mm.\n', -max(deflection_sl_v)*1e3);
 
-plot_displacement(coor, conn, deflection_v)
-plot_displacement(coor, conn, deflection_sl_v)
+exact_sol = (-1000*0.25)/(24*70*1e9*8.333*1e-10) * (0.5^3-2*0.5*0.25^2+0.25^3);
+fprintf('Exact Max deflection %.3f mm.\n',exact_sol*1e3);
+
+plot_displacement(coor, conn, deflection_v*1e3)
+plot_displacement(coor, conn, deflection_sl_v*1e3)
 
 coor_new = coor;
 coor_new_sl = coor;

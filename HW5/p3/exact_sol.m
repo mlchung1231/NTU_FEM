@@ -7,16 +7,13 @@ function exact_sol()
     num_iterations = 250; 
     N = 10;      
     
-    
     y_values = zeros(1, num_iterations);
     t_values = (0:num_iterations-1) * dt; 
-    
     
     for k = 1:num_iterations
         t = t_values(k);
         y_xt = 0; 
         
-       
         for n = 1:N
             term = (8 * h / (pi^2 * n^2)) * sin(n * pi / 2) * cos(n * c0 * pi * t / L) * sin(n * pi * x / L);
             y_xt = y_xt + term;
@@ -24,7 +21,6 @@ function exact_sol()
         
         y_values(k) = y_xt; 
     end
-    
     
     figure;
     plot(t_values, y_values);

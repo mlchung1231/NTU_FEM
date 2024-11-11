@@ -40,10 +40,10 @@ function [u, frequencies] = mode_shape_find(ndime,nnode,nelem,nelnd,mate,coor,co
     for i = 1:ndime*nnode
         lambdasort(i) = lambda(i,i);
     end
-    lambdasort = sort(diag(lambda));  % 特徵值排序
-    frequencies = sqrt(lambdasort);   % 固有頻率（Hz）
+    lambdasort = sort(diag(lambda));  
+    frequencies = sqrt(lambdasort);   
     
-    % 獲取模態形狀
+    
     nmod = mate(10);
     if ndime == 2
         nmodrbm = 3;

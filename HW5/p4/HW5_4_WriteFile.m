@@ -13,7 +13,7 @@ p = p';
 t = t';
 
 b_plane_strain = 1;
-E = 70e7; 
+E = 3*1e7; 
 v = 0.33; 
 mate = zeros(3,1);
 mate(1) = b_plane_strain;

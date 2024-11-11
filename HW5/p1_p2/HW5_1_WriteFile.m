@@ -2,7 +2,7 @@ clc;
 clear;
 addpath('../distmesh/')
 addpath('../FEM_function/')
-[p,t] = node_4_mesh(0.5, 0.01, 0.005, 0.005);
+[p,t] = node_4_mesh(0.5, 0.01, 0.0025, 0.0025);
 plot_mesh(p,t)
 
 coor = p;
@@ -47,7 +47,11 @@ for i = 1:size(t, 1)
                 trac_face = [trac_face; 3];
             end
         else
-            trac_face = [trac_face; 2];
+            if(elem_edge_nodei(2) == 3)
+                trac_face = [trac_face; 2];
+            else
+                trac_face = [trac_face; 4];
+            end
         end
         trac_h = [trac_h; 0];
         trac_v = [trac_v; -500/0.01];
@@ -56,7 +60,6 @@ end
 
 ntrac = size(trac_elem,1);
 trac = zeros(ntrac,2+ndime);
-
 for i = 1:ntrac
     trac(i,:) = [trac_elem(i), trac_face(i), trac_h(i), trac_v(i)];
 end

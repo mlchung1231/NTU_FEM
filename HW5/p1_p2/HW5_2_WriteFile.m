@@ -2,7 +2,7 @@ clc;
 clear;
 addpath('../distmesh/')
 addpath('../FEM_function/')
-[p,t] = node_4_mesh(0.5, 0.01, 0.005, 0.005);
+[p,t] = node_4_mesh(0.5, 0.01, 0.0025, 0.0025);
 plot_mesh(p,t)
 
 coor = p;
